@@ -11,8 +11,7 @@ use App\Services\PostService;
 use App\Http\Resources\PostResource;
 
 class PostController extends Controller
-{
-
+{  
 private PostService $postService;
 
 public function __construct(PostService $postService)
@@ -42,11 +41,12 @@ public function __construct(PostService $postService)
      */
     public function store(StorePostRequest $request)
 {
+
      Gate::authorize('create', Post::class); 
 
     $validated = $request->validated();
 
-     Post::create([
+     $post = Post::create([
         'title' => $validated['title'],
         'user_id' => auth()->id(),
     ]);

@@ -18,7 +18,7 @@ public function create() {
 
 }
 public function store(Request $request) {
-
+    
     Gate::authorize('create', User::class);
     $request->validate([
         'name' => 'required|string|max:255',
@@ -34,7 +34,11 @@ public function store(Request $request) {
 }
 
 public function show($id) {
-    //
+    $user = User::findOrFail($id);
+    return response()->json([
+        'message' => 'User retrieved successfully',
+        'data' => UserResource::make($user),
+    ]);
 }
 
 public function edit($id) {

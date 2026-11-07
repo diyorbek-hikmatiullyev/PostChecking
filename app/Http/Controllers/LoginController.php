@@ -16,7 +16,7 @@ class LoginController extends Controller
 
 public function login(Request $request)
 {
-    \Log::info('Login request data:', $request->all()); // <-- vaqtincha qo'shing
+    \Log::info('Login request data:', $request->all()); 
 
     $credentials = $request->validate([
         'email'    => ['required', 'email'],
@@ -24,7 +24,6 @@ public function login(Request $request)
     ]);
 
     $user = User::where('email', $credentials['email'])->first();
-    \Log::info('Found user:', ['user' => $user]); // <-- vaqtincha qo'shing
 
     if (!$user || !Hash::check($credentials['password'], $user->password)) {
         return response()->json([

@@ -20,7 +20,6 @@ class PostService
 
             if ($post->status === 'reject') {
                 $post->delete();
-
                 return null;
             }
 

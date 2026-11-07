@@ -9,20 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
-    }
+   public function up(): void
+{
+    Schema::table('posts', function (Blueprint $table) {
+        $table->string('status')
+            ->default('pending');
+    });
+}
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
-    {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
-    }
+{
+    Schema::table('posts', function (Blueprint $table) {
+        $table->dropColumn('status');
+    });
+}
 };
